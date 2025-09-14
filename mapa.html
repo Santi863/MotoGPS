@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MotoGPS Colombia</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="Estilos/style.css">
+</head>
+
+<body>
+    <header class="header">
+        <h1>🏍️ MotoGPS Colombia</h1>
+    </header>
+
+    <div class="container">
+        <div class="sidebar">
+            <div class="section">
+                <h3>📍 Planificar Ruta</h3>
+                <div class="input-group">
+                    <label>Ciudad de Origen:</label>
+                    <select id="ciudadOrigen">
+                        <option value="">Seleccionar ciudad...</option>
+                        <option value="bogota">Bogotá</option>
+                        <option value="medellin">Medellín</option>
+                        <option value="cali">Cali</option>
+                        <option value="cartagena">Cartagena</option>
+                        <option value="barranquilla">Barranquilla</option>
+                        <option value="bucaramanga">Bucaramanga</option>
+                        <option value="pereira">Pereira</option>
+                        <option value="manizales">Manizales</option>
+                        <option value="ibague">Ibagué</option>
+                        <option value="cucuta">Cúcuta</option>
+                        <option value="villavicencio">Villavicencio</option>
+                        <option value="neiva">Neiva</option>
+                        <option value="pasto">Pasto</option>
+                        <option value="monteria">Montería</option>
+                        <option value="valledupar">Valledupar</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label>Ciudad de Destino:</label>
+                    <select id="ciudadDestino">
+                        <option value="">Seleccionar ciudad...</option>
+                        <option value="bogota">Bogotá</option>
+                        <option value="medellin">Medellín</option>
+                        <option value="cali">Cali</option>
+                        <option value="cartagena">Cartagena</option>
+                        <option value="barranquilla">Barranquilla</option>
+                        <option value="bucaramanga">Bucaramanga</option>
+                        <option value="pereira">Pereira</option>
+                        <option value="manizales">Manizales</option>
+                        <option value="ibague">Ibagué</option>
+                        <option value="cucuta">Cúcuta</option>
+                        <option value="villavicencio">Villavicencio</option>
+                        <option value="neiva">Neiva</option>
+                        <option value="pasto">Pasto</option>
+                        <option value="monteria">Montería</option>
+                        <option value="valledupar">Valledupar</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label>Tipo de Ruta:</label>
+                    <select id="tipoRuta">
+                        <option value="fastest">Más Rápida</option>
+                        <option value="scenic">Más Escénica</option>
+                        <option value="safe">Más Segura</option>
+                    </select>
+                </div>
+                <button class="btn" onclick="calcularRuta()">🗺️ Calcular Ruta</button>
+                <button class="btn btn-secondary" onclick="obtenerUbicacion()">📍 Mi Ubicación</button>
+            </div>
+
+            <div class="section">
+                <h3>🔧 Mecánicos Cercanos</h3>
+                <div class="input-group">
+                    <label>Radio de búsqueda:</label>
+                    <select id="radioMecanicos">
+                        <option value="5">5 km</option>
+                        <option value="10" selected>10 km</option>
+                        <option value="20">20 km</option>
+                        <option value="50">50 km</option>
+                    </select>
+                </div>
+                <button class="btn" onclick="buscarMecanicos()">🔍 Buscar Mecánicos</button>
+                <div id="mecanicosList" class="mechanics-list">
+                    <div class="loading">Busca mecánicos cerca de tu ubicación</div>
+                </div>
+            </div>
+
+            <div class="section" id="routeInfo" style="display: none;">
+                <h3>📊 Información de Ruta</h3>
+                <div id="routeDetails" class="route-info"></div>
+            </div>
+
+            <div class="section">
+                <h3>🏙️ Agregar Nueva Ciudad</h3>
+                <div class="input-group">
+                    <label>ID (sin espacios):</label>
+                    <input type="text" id="nuevaCiudadId" placeholder="Ej: armenia">
+                </div>
+                <div class="input-group">
+                    <label>Nombre:</label>
+                    <input type="text" id="nuevaCiudadNombre" placeholder="Ej: Armenia">
+                </div>
+                <div class="input-group">
+                    <label>Latitud:</label>
+                    <input type="number" step="0.0001" id="nuevaCiudadLat" placeholder="Ej: 4.5350">
+                </div>
+                <div class="input-group">
+                    <label>Longitud:</label>
+                    <input type="number" step="0.0001" id="nuevaCiudadLng" placeholder="Ej: -75.6757">
+                </div>
+                <button class="btn" onclick="agregarCiudadDesdeFormulario()">🏙️ Agregar Ciudad</button>
+            </div>
+
+            <div class="section">
+                <h3>🛣️ Agregar Nueva Ruta</h3>
+                <div class="input-group">
+                    <label>Ciudad Origen:</label>
+                    <select id="rutaCiudadOrigen">
+                        <option value="">Seleccionar ciudad...</option>
+                        <!-- Las opciones se llenarán automáticamente -->
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label>Ciudad Destino:</label>
+                    <select id="rutaCiudadDestino">
+                        <option value="">Seleccionar ciudad...</option>
+                        <!-- Las opciones se llenarán automáticamente -->
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label>Distancia (km):</label>
+                    <input type="number" id="rutaDistancia" placeholder="Ej: 120" min="1">
+                </div>
+                <div class="input-group">
+                    <label>Tipo de Ruta:</label>
+                    <select id="rutaTipo">
+                        <option value="normal">Normal</option>
+                        <option value="scenic">Escénica</option>
+                        <option value="safe">Segura</option>
+                        <option value="dangerous">Peligrosa</option>
+                    </select>
+                </div>
+                <button class="btn" onclick="agregarRutaDesdeFormulario()">🛣️ Agregar Ruta</button>
+            </div>
+
+            <div class="section">
+                <h3>➕ Agregar Nuevo Mecánico</h3>
+                <div class="input-group">
+                    <label>Nombre del Taller:</label>
+                    <input type="text" id="nombreTaller" placeholder="Ej: Taller Moto Express">
+                </div>
+                <div class="input-group">
+                    <label>Ciudad:</label>
+                    <select id="ciudadMecanico">
+                        <option value="">Seleccionar ciudad...</option>
+                        <option value="bogota">Bogotá</option>
+                        <option value="medellin">Medellín</option>
+                        <option value="cali">Cali</option>
+                        <option value="cartagena">Cartagena</option>
+                        <option value="barranquilla">Barranquilla</option>
+                        <option value="bucaramanga">Bucaramanga</option>
+                        <option value="pereira">Pereira</option>
+                        <option value="manizales">Manizales</option>
+                        <option value="ibague">Ibagué</option>
+                        <option value="cucuta">Cúcuta</option>
+                        <option value="villavicencio">Villavicencio</option>
+                        <option value="neiva">Neiva</option>
+                        <option value="pasto">Pasto</option>
+                        <option value="monteria">Montería</option>
+                        <option value="valledupar">Valledupar</option>
+                        <option value="popayan">Popayán</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label>Especialidad:</label>
+                    <select id="especialidadMecanico">
+                        <option value="Reparación General">Reparación General</option>
+                        <option value="Motores">Motores</option>
+                        <option value="Eléctrico">Sistema Eléctrico</option>
+                        <option value="Frenos">Frenos</option>
+                        <option value="Transmisión">Transmisión</option>
+                        <option value="Suspensión">Suspensión</option>
+                        <option value="Llantas">Llantas y Rines</option>
+                        <option value="Carrocería">Carrocería</option>
+                        <option value="Refrigeración">Sistema de Refrigeración</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label>Teléfono:</label>
+                    <input type="tel" id="telefonoMecanico" placeholder="Ej: 321-555-0123">
+                </div>
+                <button class="btn" onclick="agregarMecanico()">🔧 Agregar Mecánico</button>
+            </div>
+        </div>
+
+        <div class="map-container">
+            <div id="map"></div>
+            <div class="status-indicator" id="statusIndicator">Listo para navegar</div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="Logica/main.js"></script>
+</body>
+
+</html>
