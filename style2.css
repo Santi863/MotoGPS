@@ -1,0 +1,433 @@
+#body_index {
+    background: url(../Imagenes/galaxia.jpg) no-repeat center center fixed;
+    background-size: cover;
+}
+
+#body_index1 {
+    background: #0f0c29;
+    background: -webkit-linear-gradient(to right, #24243e, #302b63, #0f0c29);
+    background: linear-gradient(to right, #24243e, #302b63, #0f0c29);
+}
+
+#body_sesion {
+    background: url(../Imagenes/wallpaper4.jpg) no-repeat center center fixed;
+    background-size: cover;
+}
+
+.main-section {
+    margin: 0 auto;
+    margin-top: 10%;
+    padding: 0;
+    border: 10px;
+    border-color: black;
+}
+
+.main-section2 {
+    margin: 0 auto;
+    margin-top: 4%;
+    padding: 0;
+    border: 10px;
+    border-color: black;
+}
+
+.main-section3 {
+    margin: 0 auto;
+    margin-top: 7%;
+    padding: 0;
+    border: 10px;
+    border-color: black;
+}
+
+.user-img {
+    margin-top: -50px;
+    margin-bottom: 35px;
+}
+
+.user-img img {
+    width: 100px;
+    height: 100px;
+}
+
+.modal-content {
+    background: url(../Imagenes/blanco2.jpg) no-repeat center center fixed;
+    background-size: contain;
+}
+
+.form-group input {
+    height: 42px;
+    font-size: 18px;
+    padding-left: 54px;
+    border-radius: 15px;
+}
+
+.form-group::before {
+    font-family: "Font Awesome\ 5 Free";
+
+    position: absolute;
+    padding: 0 1rem;
+    padding-top: 4px;
+    font-size: 22px;
+}
+
+.form-group#user-group::before {
+    content: "\f21b";
+}
+
+.form-group#contrasena-group::before {
+    content: "\f023";
+}
+
+.form-group#re-contrasena-group::before {
+    content: "\f023";
+}
+
+.form-group#number-group::before {
+    content: "\f2a0";
+}
+
+.form-group#mail-group::before {
+    content: "\f0e0";
+}
+
+.forgot {
+    padding: 5px 0;
+}
+
+.forgot a {
+    color: #54504F;
+}
+
+#fondo_venta {
+    background: url(../Imagenes/oscuro.jpg) no-repeat center center fixed;
+    background-size: cover;
+}
+
+#imgcir {
+    border-radius: 60px;
+}
+
+textarea {
+    resize: none;
+}
+
+/*Botones*/
+.button-play {
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+    border: none;
+    background: none;
+    color: #0f1923;
+    cursor: pointer;
+    position: relative;
+    padding: 12px 18px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 14px;
+    transition: all .15s ease;
+}
+
+.button-play::before,
+.button-play::after {
+    content: '';
+    display: block;
+    position: absolute;
+    right: 0;
+    left: 0;
+    height: calc(50% - 5px);
+    border: 1px solid #7D8082;
+    transition: all .15s ease;
+}
+
+.button-play::before {
+    top: 0;
+    border-bottom-width: 0;
+}
+
+.button-play::after {
+    bottom: 0;
+    border-top-width: 0;
+}
+
+.button-play:active,
+.button-play:focus {
+    outline: none;
+}
+
+.button-play:active::before,
+.button-play:active::after {
+    right: 3px;
+    left: 3px;
+}
+
+.button-play:active::before {
+    top: 3px;
+}
+
+.button-play:active::after {
+    bottom: 3px;
+}
+
+.button_lg {
+    position: relative;
+    display: block;
+    padding: 10px 20px;
+    color: #fff;
+    background-color: #0f1923;
+    overflow: hidden;
+    box-shadow: inset 0px 0px 0px 1px transparent;
+}
+
+.button_lg::before {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 2px;
+    height: 2px;
+    background-color: #0f1923;
+}
+
+.button_lg::after {
+    content: '';
+    display: block;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 4px;
+    height: 4px;
+    background-color: #0f1923;
+    transition: all .2s ease;
+}
+
+.button_sl {
+    display: block;
+    position: absolute;
+    top: 0;
+    bottom: -1px;
+    left: -8px;
+    width: 0;
+    background-color: rgb(35, 148, 201);
+    transform: skew(-15deg);
+    transition: all .2s ease;
+}
+
+.button_sl2 {
+    display: block;
+    position: absolute;
+    top: 0;
+    bottom: -1px;
+    left: -8px;
+    width: 0;
+    background-color: rgb(49, 201, 35);
+    transform: skew(-15deg);
+    transition: all .2s ease;
+}
+
+.button_text {
+    position: relative;
+}
+
+.button:hover {
+    color: #0f1923;
+}
+
+.button-play:hover .button_sl {
+    width: calc(100% + 15px);
+}
+
+.button-play:hover .button_sl2 {
+    width: calc(100% + 15px);
+}
+
+.button-play:hover .button_lg::after {
+    background-color: #fff;
+}
+
+/* From Uiverse.io by MuhammadHasann */
+.button_buscar {
+    --black-700: rgb(255, 255, 255);
+    --border_radius: 100%;
+    --border-color: black;
+    --transtion: 0.3s ease-in-out;
+    --offset: 2px;
+
+    cursor: pointer;
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    transform-origin: center;
+
+    padding: 0.5rem 1rem;
+    background-color: transparent;
+
+    border: none;
+    border-radius: var(--border_radius);
+    transform: scale(calc(1 + (var(--active, 0) * 0.1)));
+
+    transition: transform var(--transtion);
+}
+
+.button_buscar::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    width: 100%;
+    height: 100%;
+    background-color: var(--black-700);
+
+    border-radius: var(--border_radius);
+    box-shadow: inset 0 0.5px hsl(0, 0%, 100%), inset 0 -1px 2px 0 hsl(0, 0%, 0%),
+        0px 4px 10px -4px hsla(0 0% 0% / calc(1 - var(--active, 0))),
+        0 0 0 calc(var(--active, 0) * 0.375rem) hsl(260 97% 50% / 0.75);
+
+    transition: all var(--transtion);
+    z-index: 0;
+}
+
+.button_buscar::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    width: 100%;
+    height: 100%;
+    background-color: hsla(260 97% 61% / 0.75);
+    background-image: radial-gradient(at 51% 89%,
+            hsla(266, 45%, 74%, 1) 0px,
+            transparent 50%),
+        radial-gradient(at 100% 100%, hsla(266, 36%, 60%, 1) 0px, transparent 50%),
+        radial-gradient(at 22% 91%, hsla(266, 36%, 60%, 1) 0px, transparent 50%);
+    background-position: top;
+
+    opacity: var(--active, 0);
+    border-radius: var(--border_radius);
+    transition: opacity var(--transtion);
+    z-index: 2;
+}
+
+.button_buscar:is(:hover, :focus-visible) {
+    --active: 1;
+}
+
+.button_buscar:active {
+    transform: scale(1);
+}
+
+.button_buscar .dots_border {
+    --size_border: calc(100% + 2px);
+
+    overflow: hidden;
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    width: var(--size_border);
+    height: var(--size_border);
+    background-color: transparent;
+
+    border-radius: var(--border_radius);
+    z-index: -10;
+}
+
+.button_buscar .dots_border::before {
+    content: "";
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transform-origin: left;
+    transform: rotate(0deg);
+
+    width: 100%;
+    height: 2rem;
+    background-color: white;
+
+    mask: linear-gradient(transparent 0%, white 120%);
+    animation: rotate 2s linear infinite;
+}
+
+@keyframes rotate {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.button_buscar .sparkle {
+    position: relative;
+    z-index: 10;
+
+    width: 1.75rem;
+}
+
+.button_buscar .sparkle .path {
+    fill: currentColor;
+    stroke: currentColor;
+
+    transform-origin: center;
+
+    color: hsl(0, 0%, 100%);
+}
+
+.button_buscar:is(:hover, :focus) .sparkle .path {
+    animation: path 1.5s linear 0.5s infinite;
+}
+
+.button_buscar .sparkle .path:nth-child(1) {
+    --scale_path_1: 1.2;
+}
+
+.button_buscar .sparkle .path:nth-child(2) {
+    --scale_path_2: 1.2;
+}
+
+.button_buscar .sparkle .path:nth-child(3) {
+    --scale_path_3: 1.2;
+}
+
+@keyframes path {
+
+    0%,
+    34%,
+    71%,
+    100% {
+        transform: scale(1);
+    }
+
+    17% {
+        transform: scale(var(--scale_path_1, 1));
+    }
+
+    49% {
+        transform: scale(var(--scale_path_2, 1));
+    }
+
+    83% {
+        transform: scale(var(--scale_path_3, 1));
+    }
+}
+
+.button_buscar .text_button {
+    position: relative;
+    z-index: 10;
+    color: white;
+
+    background-image: linear-gradient(90deg,
+            hsla(0 0% 100% / 1) 0%,
+            hsla(0 0% 100% / var(--active, 0)) 120%);
+    background-clip: text;
+
+    font-size: 1rem;
+}
